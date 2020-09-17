@@ -46,7 +46,16 @@ The app is configured to be deployed in Heroku. You can either use CircleCI or d
 
 ### Deploying straight to Heroku
 
-- To create a production build and deploy the application to Heroku, set up a Heroku remote for the repository, run `heroku config:set PORT=5000` to set the PORT varible, and run `npm run deploy:full`.
+To create a production build and deploy the application to Heroku, set up a Heroku remote for the repository, run `heroku config:set PORT=5000` to set the PORT varible, and run `npm run deploy:full`.
+
+### Deploy using CircleCI
+
+To deploy using CircleCI:
+
+- Set up the project on your Github-connected CircleCI account.
+- Head over to your CircleCI dashboard and click Settings for your project.
+- Click Environment Variables on the left sidebar
+- Create two variables named `HEROKU_APP_NAME` (the name of your Heroku app) and `HEROKU_API_KEY` (found under the Account tab of your Heroku account under Account Settings).
 
 ## Licensing
 
