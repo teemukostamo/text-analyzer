@@ -4,12 +4,12 @@
   "description": "An API endpoint that returns the length, word count and character count of a string.",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "dev": "cross-env NODE_ENV=development ts-node-dev index.ts",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./",
     "start": "cross-env NODE_ENV=production node build/index.js",
     "start:test": "cross-env NODE_ENV=test node ./build/index.js",
-    "test": "cross-env NODE_ENV=test jest --verbose --runInBand --detectOpenHandles",
-    "tsc": "tsc"
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand --detectOpenHandles"
   },
   "keywords": [
     "node",
