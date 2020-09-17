@@ -34,12 +34,16 @@ const parser = (text: string): ParsedResponse => {
     });
   });
 
+  const wordCount = (str: string) =>
+    // eslint-disable-next-line implicit-arrow-linebreak
+    str.split(' ').filter((n) => n !== '').length;
+
   const result = {
     textLength: {
       withSpaces: text.length,
       withoutSpaces: text.replace(/ /g, '').length,
     },
-    wordCount: text.split(' ').length,
+    wordCount: wordCount(text),
     characterCount: characterCountArray,
   };
 
