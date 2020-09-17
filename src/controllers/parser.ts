@@ -14,6 +14,7 @@ interface ParsedResponse {
 const parser = (text: string): ParsedResponse => {
   const removeNonEnglishChars = text
     .replace(/[^A-Za-z]/g, '')
+    .toLowerCase()
     .split('')
     .sort()
     .join('');

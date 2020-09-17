@@ -19,11 +19,12 @@ interface CustomReq extends Request {
 
 app.post('/analyze', (req: CustomReq, res: Response) => {
   const { text } = req.body;
-  if (!text) {
-    res
-      .status(400)
-      .send('Please send a proper request: {"text": "your message here"}');
-  }
+  // below is my choice of handling a missing string
+  // if (!text) {
+  //   res
+  //     .status(400)
+  //     .send('Please send a proper request: {"text": "your message here"}');
+  // }
   res.status(200).send(parser(text));
 });
 
