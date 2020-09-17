@@ -1,11 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/restrict-plus-operands */
-/* eslint-disable no-param-reassign */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable implicit-arrow-linebreak */
 interface CharCount {
-  [key: string]: number | undefined;
+  [key: string]: number;
 }
 
 interface ParsedResponse {
@@ -14,19 +8,31 @@ interface ParsedResponse {
     withoutSpaces: number;
   };
   wordCount: number;
-  characterCount: CharCount;
+  characterCount: Array<CharCount>;
 }
 
 const parser = (text: string): ParsedResponse => {
-  const replacedText = text.replace(/^[a-z]+$/i, '');
-  const getFrequency = (str: string): CharCount =>
-    str.split('').reduce((prev: any, curr: any): any => {
+  const removeNonEnglishChars = text
+    .replace(/[^A-Za-z]/g, '')
+    .split('')
+    .sort()
+    .join('');
+
+  const reducedString = removeNonEnglishChars
+    .split('')
+    .reduce((prev: CharCount, curr: string): CharCount => {
+      // eslint-disable-next-line no-param-reassign
       prev[curr] = prev[curr] ? prev[curr] + 1 : 1;
       return prev;
     }, {});
 
-  const frequency = getFrequency(replacedText);
-  console.log(frequency);
+  const characterCountArray: Array<CharCount> = [];
+
+  Object.entries(reducedString).forEach((entry): void => {
+    characterCountArray.push({
+      [entry[0]]: entry[1],
+    });
+  });
 
   const result = {
     textLength: {
@@ -34,9 +40,8 @@ const parser = (text: string): ParsedResponse => {
       withoutSpaces: text.replace(/ /g, '').length,
     },
     wordCount: text.split(' ').length,
-    characterCount: frequency,
+    characterCount: characterCountArray,
   };
-  console.log('testing result', result);
 
   return result;
 };
