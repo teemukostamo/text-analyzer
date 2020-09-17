@@ -8,7 +8,6 @@ test('bad request returns 400', async () => {
   const requestBody = {
     foo: 'bar',
   };
-
   await api.post('/analyze').send(requestBody).expect(400);
 });
 
@@ -16,8 +15,6 @@ test('correct request returns 200', async () => {
   const requestBody = {
     text: 'this is a correct format request',
   };
-  const test = await api.post('/analyze').send(requestBody);
-  console.log(test.body);
   await api
     .post('/analyze')
     .send(requestBody)
