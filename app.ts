@@ -3,6 +3,8 @@ import bodyParser from 'body-parser';
 import parser from './src/controllers/parser';
 import logger from './src/middleware/logger';
 
+console.log('yo');
+
 const app = express();
 app.use(express.json());
 
